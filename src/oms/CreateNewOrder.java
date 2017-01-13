@@ -30,7 +30,16 @@ public class CreateNewOrder extends Message implements Serializable{
     private Date expireTime; 
     private Date expireDate;
     private String clOrdID;
+    private int marketId;
 
+    public int getMarketId() {
+        return marketId;
+    }
+
+    public void setMarketId(int marketId) {
+        this.marketId = marketId;
+    }
+    
     public CreateNewOrder(String msgKey) {
         super(msgKey);
     }

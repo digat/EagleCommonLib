@@ -10,7 +10,19 @@ package com;
  * @author Tareq
  */
 public class Enums {
-
+    public static enum ReplyState{
+        START,
+        FINISH
+    }    
+    public static enum TransactionType{
+        nil,
+        NewOrderWithConfirmation,
+        NewOrderWithoutConfirmation,
+        PlaceOrder,
+        CreateNewOrder,
+        CancelOrder,
+        ModifyOrder;
+    }
     public static enum KwOrderType {
         Unknown(0),
         Market(1), //
@@ -32,6 +44,36 @@ public class Enums {
         public int toInteger() {
             return this.value;
         }
+        //convert ETP Operation
+        public static String toEtpOrderType(KwOrderType v){
+            switch(v){
+                case Market:
+                    return "15";
+                case Limit:
+                    return "16";
+                case StopLoss:
+                    return "17";
+                case StopLimit:
+                    return "18";
+                default:
+                    return null;
+            }
+        }        
+
+        public static KwOrderType fromEtpOrderType(String v){
+            switch(v){
+                case "15":
+                    return KwOrderType.Market;
+                case "16":
+                    return KwOrderType.Limit;
+                case "17":
+                    return KwOrderType.StopLoss;
+                case "18":
+                    return KwOrderType.StopLimit;
+                default:
+                    return KwOrderType.Unknown;
+            }
+        }        
         public static KwOrderType fromString(String v){
             switch(v){
                 case "Market":
@@ -67,6 +109,26 @@ public class Enums {
         Unknown(0),
         Buy(1),
         Sell(2);
+        public static Side fromEtpSide(String v){
+            switch(v){
+                case "13":
+                    return Side.Buy;
+                case "14":
+                    return Side.Sell;
+                default:
+                    return Side.Unknown;
+            }
+        }        
+        public static String toEtpSide(Side v){
+            switch(v){
+                case Buy:
+                    return "13";
+                case Sell:
+                    return "14";
+                default:
+                    return null;
+            }
+        }        
 
         public static Side fromString(String toString) {
             switch(toString){
@@ -325,6 +387,39 @@ public class Enums {
                 return TimeInForce.Session;
             }
         }
+        public static TimeInForce fromEtpTimeInForce(String v){
+            switch(v){
+                    case "19":
+                        return TimeInForce.Day;
+                    case "20":
+                        return TimeInForce.GTC;
+                    case "190":
+                        return TimeInForce.IOC;
+                    case "188":
+                        return TimeInForce.FOK;
+                    case "189":
+                        return TimeInForce.GTD;
+                    default:
+                        return TimeInForce.Session;
+            }
+        }        
+        public static String toEtpTimeInForce(TimeInForce v){
+            switch(v){
+                    case Day:
+                        return "19";
+                    case GTC:
+                        return "20";
+                    case IOC:
+                        return "190";
+                    case FOK:
+                        return "188";
+                    case GTD:
+                        return "189";
+                    default:
+                        return "192";
+            }
+        }        
+
     }
     public static enum OrderType {
         Unknown(0),

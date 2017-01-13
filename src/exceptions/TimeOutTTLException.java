@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package classes;
+package exceptions;
 
 /**
  *
  * @author Tareq
  */
-public class Enums {
-    public static enum ReplyState{
-        START,
-        FINISH
+public class TimeOutTTLException extends Exception {
+
+    public TimeOutTTLException() {
+        super("Transaction toke more than the TTL value, thus Rejected by OMS");
     }
+    
 }

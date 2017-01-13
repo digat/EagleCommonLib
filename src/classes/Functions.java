@@ -8,6 +8,7 @@ import static classes.Constants.FIX_LOCAL_MKT_DATE_FORMAT;
 import static classes.Constants.FIX_TIMESTAMP_FORMAT;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
@@ -59,4 +60,23 @@ public class Functions {
                 FIX_LOCAL_MKT_DATE_FORMAT);
         return dateFormat.format(input);
     }        
+    public static Date StringToDate(String input) {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat(
+                    FIX_LOCAL_MKT_DATE_FORMAT);
+            return dateFormat.parse(input);
+        } catch (ParseException ex) {
+            return null;
+        }
+    }   
+    public static Date StringToDateTime(String input) {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat(
+                    FIX_TIMESTAMP_FORMAT);
+            return dateFormat.parse(input);
+        } catch (ParseException ex) {
+            return null;
+        }
+    }   
+
 }
