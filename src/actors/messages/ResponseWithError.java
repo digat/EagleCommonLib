@@ -6,7 +6,6 @@
 package actors.messages;
 
 import io.netty.channel.Channel;
-import java.io.Serializable;
 
 /**
  *
@@ -15,14 +14,30 @@ import java.io.Serializable;
 public class ResponseWithError {
     private final Throwable error;
     private final Channel channel;
-
-    public ResponseWithError(Throwable error, Channel channel) {
+    private final int id;
+    private final String opStatus;
+    
+    public ResponseWithError(Throwable error, Channel channel, int id, String opStatus) {
         this.error = error;
         this.channel = channel;
+        this.id = id;
+        this.opStatus = opStatus;
     }
 
     public Throwable getError() {
         return error;
+    }
+
+    public Channel getChannel() {
+        return channel;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getOpStatus() {
+        return opStatus;
     }
 
     

@@ -10,15 +10,20 @@ package classes;
  * @author Tareq
  */
 public abstract class TimeBased {
-    private final long creattionTime;
+    private final long creationTime;
 
     public TimeBased() {
-        creattionTime = System.nanoTime();
+        creationTime = System.nanoTime();
     }
     public TimeBased(long creattionTime) {
-        this.creattionTime = creattionTime;
+        this.creationTime = creattionTime;
     }
     public int elapsedReadTime() {
-        return (int) ((System.nanoTime() - creattionTime) / 1000000);//MS
+        return (int) ((System.nanoTime() - creationTime) / 1000000);//MS
     }    
+
+    public long getCreationTime() {
+        return creationTime;
+    }
+
 }

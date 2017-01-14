@@ -14,10 +14,12 @@ import io.netty.channel.Channel;
 public class ResponseWithSuccess {
     private final String result;
     private final Channel channel;
+    private final int id;
 
-    public ResponseWithSuccess(String result, Channel channel) {
+    public ResponseWithSuccess(String result, Channel channel, int id) {
         this.result = result;
         this.channel = channel;
+        this.id = id;
     }
 
     public String getResult() {
@@ -27,4 +29,9 @@ public class ResponseWithSuccess {
     public Channel getChannel() {
         return channel;
     }
+
+    public int getId() {
+        return id;
+    }
+    
 }

@@ -8,6 +8,7 @@ package actors.messages;
 import classes.Functions;
 import classes.TimeBased;
 import com.Enums.TransactionType;
+import io.netty.channel.Channel;
 import java.util.Map;
 
 /**
@@ -18,12 +19,16 @@ public class TransactionMessage extends TimeBased{
     private final Map<String, String> result;
     private final TransactionType transactionType;
     private final String clorderIdGenrated;
+    private final Channel channel;
+     private final int id;
 
-    public TransactionMessage(Map<String, String> result, TransactionType transactionType) {
+    public TransactionMessage(Map<String, String> result, TransactionType transactionType, Channel channel, int id) {
         super();
         this.result = result;
         this.transactionType = transactionType;
         clorderIdGenrated = Functions.generateId();
+        this.channel = channel;
+        this.id = id;
     }
 
     public TransactionType getTransactionType() {
@@ -36,5 +41,25 @@ public class TransactionMessage extends TimeBased{
 
     public Map<String, String> getResult() {
         return result;
+    }
+
+    public Channel getChannel() {
+        return channel;
+    }
+
+    public int getId() {
+        return id;
+    }
+    
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("[TransactionMessage][TransactionType]")
+                .append("\t")
+                .append(transactionType.name())
+                .append("\t")
+                .append("[xml]")
+                .append(result);
+        return sb.toString();
     }
 }

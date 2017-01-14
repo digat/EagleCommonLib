@@ -6,9 +6,10 @@
 package classes;
 
 import com.Enums.TransactionType;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 import exceptions.SendingException;
-import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -16,12 +17,14 @@ import java.util.List;
  */
 public class Transaction extends TimeBased{
     private TransactionType transactionType;
-    private List<String> orderXmlParams; //newLinkedList
-    private Multimap<String,Data> dbResult;
+    private Map<String, String> parameters;
     private SendingException sendingException = null;
 
-    public Transaction() {
-        super();
+    public Transaction(long time, Map<String, String> orderXmlParams, Multimap<String,Data> dbResult) {
+        super(time);
+        parameters = Maps.newHashMap();
+        parameters.putAll(orderXmlParams);
+        parameters.putAll(dbResult.entries().stream().findFirst().get().getValue().getValues());        
     }
 
     public TransactionType getTransactionType() {
@@ -32,20 +35,8 @@ public class Transaction extends TimeBased{
         this.transactionType = transactionType;
     }
 
-    public List<String> getOrderXmlParams() {
-        return orderXmlParams;
-    }
-
-    public void setOrderXmlParams(List<String> orderXmlParams) {
-        this.orderXmlParams = orderXmlParams;
-    }
-
-    public Multimap<String, Data> getDbResult() {
-        return dbResult;
-    }
-
-    public void setDbResult(Multimap<String, Data> dbResult) {
-        this.dbResult = dbResult;
+    public Map<String, String> getParameters() {
+        return parameters;
     }
 
     public SendingException getSendingException() {
