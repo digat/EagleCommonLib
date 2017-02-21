@@ -46,6 +46,10 @@ public class Reply {
     public ReplyState getReplyState() {
         return replyState;
     }
+    public void waitForReply() throws InterruptedException {
+        latch.await();
+    }
+
     public void waitForReply(int timeout, final TimeUnit tu) throws InterruptedException, TimeoutException {
         replyState=ReplyState.FINISH;
         if(!latch.await(timeout, tu)){

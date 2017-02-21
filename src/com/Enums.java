@@ -10,6 +10,19 @@ package com;
  * @author Tareq
  */
 public class Enums {
+    public static enum StateRep{
+        OrderCancelReject(0),
+        InAppia(1),
+        InFix(2),
+        RejectAppia(3),
+        RejectFix(4),
+        AppiaExpired(5),
+        ;
+        int value;
+        StateRep(int value){
+            this.value = value;
+        }
+    }
     public static enum ReplyState{
         START,
         FINISH
@@ -324,7 +337,7 @@ public class Enums {
                     default:
                         return ExecType.nil;
                 }
-            }catch(Exception ex){
+            }catch(NumberFormatException ex){
                 switch(v){
                     case "C":
                         return ExecType.Expired;
@@ -416,7 +429,7 @@ public class Enums {
                     case GTD:
                         return "189";
                     default:
-                        return "192";
+                        return "192";//Session
             }
         }        
 
@@ -589,5 +602,68 @@ public class Enums {
         public int toInteger() {
             return this.value;
         }
+    }
+    public static enum ExecInst{
+        Nil(""),
+        StayOnOffer("0"),//0 = Stay on offer side
+        NotHeld("1"),//1 = Not held
+        Work("2"),//2 = Work
+        GoAlong("3"),//3 = Go along
+        OverTheDay("4"),//4 = Over the day
+        Held("5"),//5 = Held
+        Participant("6"),//6 = Participant don't initiate
+        StrictScale("7"),//7 = Strict scale
+        TryToScale("8"),//8 = Try to scale
+        StayOnBid("9"),//9 = Stay on bid side
+        NoCross("A"),//A = No cross (cross is forbidden)
+        Trailing("a"),//a = Trailing Stop Peg
+        OKToCross("B"),//B = OK to cross
+        StrictLimit("b"),//b = Strict Limit (No price improvement)
+        IgnorePrice("c"),//c = Ignore Price Validity Checks
+        CallFirst("C"),//C = Call first
+        PegToLimit("d"),//d = Peg to Limit Price
+        PercentOfVolume("D"),//D = Percent of volume (indicates that the sender does not want to be all of the volume on the floor vs. a specific percentage)
+        DonotIncrease("E"),//E = Do not increase - DNI
+        WorkToTarget("e"),//e = Work to Target Strategy
+        DonotReduce("F"),//F = Do not reduce - DNR
+        AllOrNone("G"),//G = All or none - AON
+        ReinstateOnSystem("H"),//H = Reinstate on system failue (mutually exclusive with Q)
+        InstitutionsOnly("I"),//I = Institutions only
+        ReinstateOnTrading("J"),//J = Reinstate on Trading Halt (mutually exclusive with K)
+        CancelOnTrading("K"),//K = Cancel on Trading Halt (mutually exclusive with J)
+        LastPeg("L"),//L = Last peg (last sale)
+        MidPricePeg("M"),//M = Mid-price peg (midprice of inside quote)
+        NonNegotiable("N"),//N = Non-negotiable
+        OpeningPeg("O"),//O = Opening peg
+        MarketPeg("P"),//P = Market peg
+        CancelOnSystem("Q"),//Q = Cancel on system failure (mutually exclusive with H)
+        PrimaryPeg("R"),//R = Primary peg (primary market - buy at bid/sell at offer)
+        Suspend("S"),//S = Suspend
+        CustomerDisplayInstruction("U"),//U = Customer Display Instruction (Rule 11Ac1-1/4)
+        Netting("V"),//V = Netting (for Forex)
+        VWAP("W"),//W = Peg to VWAP
+        TradeAlong("X"),//X = Trade Along
+        TryToStop("Y"),//Y = Try To Stop
+        CancelIfNotBest("Z"),//Z = Cancel if not best
+        IntermarketSweep("f"),//f = Intermarket Sweep
+        SingleExecution("j"),//j = Single execution requested for block trade
+        ExternalRoutingAllowed("g"),//g = External Routing Allowed
+        ExternalRoutingNotAllowed("h"),//h = External Routing Not Allowed
+        Imbalance("i"),//i = Imbalance Only
+        FixedPeg("T"),//T = Fixed Peg to Local best bid or offer at time of order
+        BestExecution ("k");//k = Best Execution        
+        String value;
+
+        ExecInst(String value) {
+            this.value = value;
+        }
+         public static ExecInst fromString(String v){
+             switch(v){
+                case "G":
+                     return AllOrNone;
+                default:
+                    return Nil;
+             }
+         }
     }
 }

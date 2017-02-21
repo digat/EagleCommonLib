@@ -5,6 +5,13 @@
  */
 package oms;
 
+import com.Enums.ExecInst;
+import com.Enums.ExecType;
+import com.Enums.KwOrderType;
+import com.Enums.OrdRejReason;
+import com.Enums.OrdStatus;
+import com.Enums.Side;
+import com.Enums.TimeInForce;
 import java.io.Serializable;
 
 /**
@@ -13,36 +20,44 @@ import java.io.Serializable;
  */
 public class ExecutionReport extends Message implements Serializable{
     static final long serialVersionUID = 25L;
+    
     private String orderID; 
     private String clOrdID;
     private String origClOrdID;
     private String execID;
-    private String execType;
-    private String ordStatus;
+    private ExecType execType;
+    private OrdStatus ordStatus;
     private String account; 
-    private String side;
+    private Side side;
     private double orderQty;
-    private int ordType;
+    private KwOrderType ordType;
     private double price;
-    private int timeInForce;
+    private TimeInForce timeInForce;
     private String tradingSessionID;
     private double leavesQty;
     private double cumQty;
     private double avgPx;
     private double lastPx;
+    private double lastQty;
     private double grossTradeAmt;
     private String transactTime; 
     private String settlDate;
-    private String securityID; //seccode
+    private String securityID; //seccode 
     private String trdMatchID;
     private double minQty;
     private String text;
-    private String ordRejReason;
+    private OrdRejReason ordRejReason;
     private int msgSeqNum;
     private int cxlRejResponseTo;
     private String cxlRejReason;
     private String tradeDate;
+    private String expireDate;
+    private String expireTime;
+    private ExecInst execInst;
+    private String marketId;
+    private String fixRefMsg;
 
+    
     public ExecutionReport(String msgKey) {
         super(msgKey);
     }
@@ -79,22 +94,24 @@ public class ExecutionReport extends Message implements Serializable{
         this.execID = execID;
     }
 
-
-    public String getExecType() {
+    public ExecType getExecType() {
         return execType;
     }
 
-    public void setExecType(String execType) {
+    public void setExecType(ExecType execType) {
         this.execType = execType;
     }
 
-    public String getOrdStatus() {
+    public OrdStatus getOrdStatus() {
         return ordStatus;
     }
 
-    public void setOrdStatus(String ordStatus) {
+    public void setOrdStatus(OrdStatus ordStatus) {
         this.ordStatus = ordStatus;
     }
+
+
+
 
     public String getAccount() {
         return account;
@@ -102,14 +119,6 @@ public class ExecutionReport extends Message implements Serializable{
 
     public void setAccount(String account) {
         this.account = account;
-    }
-
-    public String getSide() {
-        return side;
-    }
-
-    public void setSide(String side) {
-        this.side = side;
     }
 
     public double getOrderQty() {
@@ -120,14 +129,6 @@ public class ExecutionReport extends Message implements Serializable{
         this.orderQty = orderQty;
     }
 
-    public int getOrdType() {
-        return ordType;
-    }
-
-    public void setOrdType(int ordType) {
-        this.ordType = ordType;
-    }
-
     public double getPrice() {
         return price;
     }
@@ -136,13 +137,6 @@ public class ExecutionReport extends Message implements Serializable{
         this.price = price;
     }
 
-    public int getTimeInForce() {
-        return timeInForce;
-    }
-
-    public void setTimeInForce(int timeInForce) {
-        this.timeInForce = timeInForce;
-    }
 
     public String getTradingSessionID() {
         return tradingSessionID;
@@ -240,13 +234,54 @@ public class ExecutionReport extends Message implements Serializable{
         this.text = text;
     }
 
-    public String getOrdRejReason() {
+    public Side getSide() {
+        return side;
+    }
+
+    public void setSide(Side side) {
+        this.side = side;
+    }
+
+    public KwOrderType getOrdType() {
+        return ordType;
+    }
+
+    public void setOrdType(KwOrderType ordType) {
+        this.ordType = ordType;
+    }
+
+    public TimeInForce getTimeInForce() {
+        return timeInForce;
+    }
+
+    public void setTimeInForce(TimeInForce timeInForce) {
+        this.timeInForce = timeInForce;
+    }
+
+    public OrdRejReason getOrdRejReason() {
         return ordRejReason;
     }
 
-    public void setOrdRejReason(String ordRejReason) {
+    public void setOrdRejReason(OrdRejReason ordRejReason) {
         this.ordRejReason = ordRejReason;
     }
+
+    public String getExpireDate() {
+        return expireDate;
+    }
+
+    public void setExpireDate(String expireDate) {
+        this.expireDate = expireDate;
+    }
+
+    public String getExpireTime() {
+        return expireTime;
+    }
+
+    public void setExpireTime(String expireTime) {
+        this.expireTime = expireTime;
+    }
+
 
     public int getMsgSeqNum() {
         return msgSeqNum;
@@ -279,5 +314,38 @@ public class ExecutionReport extends Message implements Serializable{
     public void setTradeDate(String tradeDate) {
         this.tradeDate = tradeDate;
     }
+
+    public void setExecInst(ExecInst execInst) {
+        this.execInst = execInst;
+    }
+
+    public ExecInst getExecInst() {
+        return execInst;
+    }
+
+    public String getMarketId() {
+        return marketId;
+    }
+
+    public void setMarketId(String marketId) {
+        this.marketId = marketId;
+    }
+
+    public String getFixRefMsg() {
+        return fixRefMsg;
+    }
+
+    public void setFixRefMsg(String fixRefMsg) {
+        this.fixRefMsg = fixRefMsg;
+    }
+
+    public double getLastQty() {
+        return lastQty;
+    }
+
+    public void setLastQty(double lastQty) {
+        this.lastQty = lastQty;
+    }
+
     
 }
