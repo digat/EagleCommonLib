@@ -8,6 +8,7 @@ package oms;
 import com.Enums.OrdStatus;
 import com.Enums.StateRep;
 import java.io.Serializable;
+import java.lang.reflect.Field;
 
 /**
  *
@@ -127,5 +128,21 @@ public class StateReport extends Message implements Serializable{
     public void setClOrdID(String clOrdID) {
         this.clOrdID = clOrdID;
     }
-    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("[StateReport] ");
+        for (Field field : this.getClass().getDeclaredFields()) {
+            //field.setAccessible(true); // if you want to modify private fields
+            try {
+                sb.append("[").append(field.getName()).append("] ");
+                sb.append(field.get(this));
+            } catch (IllegalArgumentException | IllegalAccessException ex) {
+                sb.append("null");
+            }
+
+        }
+        return sb.toString();
+    }    
 }

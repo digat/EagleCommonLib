@@ -16,6 +16,7 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  *
  * @author Tareq
+ * @param <T>
  */
 public class ConcurrentArrayList <T extends Comparable<T>> {
     private final ArrayList<T> m_list;

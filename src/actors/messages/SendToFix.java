@@ -30,5 +30,14 @@ public class SendToFix {
     public void setNumberOfTries(int numberOfTries) {
         this.numberOfTries = numberOfTries;
     }
-    
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("[SendToFix] ")
+                .append("[transaction] ")
+                .append(transaction)
+                .append("[numberOfTries] ")
+                .append(numberOfTries);
+        return sb.toString();
+    }        
 }

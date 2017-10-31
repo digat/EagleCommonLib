@@ -14,10 +14,10 @@ import io.netty.channel.Channel;
 public class ResponseWithError {
     private final Throwable error;
     private final Channel channel;
-    private final int id;
+    private final String id;
     private final String opStatus;
     
-    public ResponseWithError(Throwable error, Channel channel, int id, String opStatus) {
+    public ResponseWithError(Throwable error, Channel channel, String id, String opStatus) {
         this.error = error;
         this.channel = channel;
         this.id = id;
@@ -32,13 +32,16 @@ public class ResponseWithError {
         return channel;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
     public String getOpStatus() {
         return opStatus;
     }
-
+    @Override
+    public String toString() {
+        return "[ResponseWithError]: [id]" +id+" [opStatus] "+opStatus+" [error] "+error.getMessage(); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

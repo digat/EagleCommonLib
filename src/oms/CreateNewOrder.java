@@ -4,6 +4,7 @@ import com.Enums.KwOrderType;
 import com.Enums.Side;
 import com.Enums.TimeInForce;
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.util.Date;
 
 /*
@@ -31,6 +32,7 @@ public class CreateNewOrder extends Message implements Serializable{
     private Date expireDate;
     private String clOrdID;
     private int marketId;
+    private String subAccount="";
 
     public int getMarketId() {
         return marketId;
@@ -139,4 +141,29 @@ public class CreateNewOrder extends Message implements Serializable{
     public void setClOrdID(String clOrdID) {
         this.clOrdID = clOrdID;
     }
+
+    public String getSubAccount() {
+        return subAccount;
+    }
+
+    public void setSubAccount(String subAccount) {
+        this.subAccount = subAccount;
+    }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("[CreateNewOrder] ");
+        for (Field field : this.getClass().getDeclaredFields()) {
+            //field.setAccessible(true); // if you want to modify private fields
+            try {
+                sb.append("[").append(field.getName()).append("] ");
+                sb.append(field.get(this));
+            } catch (IllegalArgumentException | IllegalAccessException ex) {
+                sb.append("null");
+            }
+
+        }
+        return sb.toString();
+    }    
 }

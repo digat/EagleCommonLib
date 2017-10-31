@@ -9,6 +9,7 @@ import com.Enums.KwOrderType;
 import com.Enums.Side;
 import com.Enums.TimeInForce;
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.util.Date;
 
 /**
@@ -157,5 +158,21 @@ public class ModifyOrder extends Message implements Serializable{
     public void setClOrdID(String clOrdID) {
         this.clOrdID = clOrdID;
     }
-    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("[ModifyOrder] ");
+        for (Field field : this.getClass().getDeclaredFields()) {
+            //field.setAccessible(true); // if you want to modify private fields
+            try {
+                sb.append("[").append(field.getName()).append("] ");
+                sb.append(field.get(this));
+            } catch (IllegalArgumentException | IllegalAccessException ex) {
+                sb.append("null");
+            }
+
+        }
+        return sb.toString();
+    }    
 }

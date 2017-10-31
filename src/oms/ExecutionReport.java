@@ -13,21 +13,24 @@ import com.Enums.OrdStatus;
 import com.Enums.Side;
 import com.Enums.TimeInForce;
 import java.io.Serializable;
+import java.lang.reflect.Field;
+
 
 /**
  *
  * @author Tareq
  */
-public class ExecutionReport extends Message implements Serializable{
+public class ExecutionReport extends Message implements Serializable {
+
     static final long serialVersionUID = 25L;
-    
-    private String orderID; 
+
+    private String orderID;
     private String clOrdID;
     private String origClOrdID;
     private String execID;
     private ExecType execType;
     private OrdStatus ordStatus;
-    private String account; 
+    private String account;
     private Side side;
     private double orderQty;
     private KwOrderType ordType;
@@ -40,7 +43,7 @@ public class ExecutionReport extends Message implements Serializable{
     private double lastPx;
     private double lastQty;
     private double grossTradeAmt;
-    private String transactTime; 
+    private String transactTime;
     private String settlDate;
     private String securityID; //seccode 
     private String trdMatchID;
@@ -57,7 +60,6 @@ public class ExecutionReport extends Message implements Serializable{
     private String marketId;
     private String fixRefMsg;
 
-    
     public ExecutionReport(String msgKey) {
         super(msgKey);
     }
@@ -110,9 +112,6 @@ public class ExecutionReport extends Message implements Serializable{
         this.ordStatus = ordStatus;
     }
 
-
-
-
     public String getAccount() {
         return account;
     }
@@ -136,7 +135,6 @@ public class ExecutionReport extends Message implements Serializable{
     public void setPrice(double price) {
         this.price = price;
     }
-
 
     public String getTradingSessionID() {
         return tradingSessionID;
@@ -282,7 +280,6 @@ public class ExecutionReport extends Message implements Serializable{
         this.expireTime = expireTime;
     }
 
-
     public int getMsgSeqNum() {
         return msgSeqNum;
     }
@@ -346,6 +343,23 @@ public class ExecutionReport extends Message implements Serializable{
     public void setLastQty(double lastQty) {
         this.lastQty = lastQty;
     }
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
 
-    
+        sb.append("[ExecutionReport] ");
+        sb.append("[").append(execType.name()).append("] ");
+        for (Field field : this.getClass().getDeclaredFields()) {
+            //field.setAccessible(true); // if you want to modify private fields
+            try {
+                sb.append("[").append(field.getName()).append("] ");
+                sb.append(field.get(this));
+            } catch (IllegalArgumentException | IllegalAccessException ex) {
+                sb.append("null");
+            }
+
+        }
+        return sb.toString();
+    }
+
 }

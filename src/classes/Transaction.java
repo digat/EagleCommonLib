@@ -46,5 +46,16 @@ public class Transaction extends TimeBased{
     public void setSendingException(SendingException sendingException) {
         this.sendingException = sendingException;
     }
-    
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("[Transaction] ")
+                .append("[parameters] ")
+                .append(parameters)
+                .append("[SendingException] ")
+                .append(sendingException!=null?sendingException.getMessage():"")
+                .append("[transactionType] ")
+                .append(transactionType.name());
+        return sb.toString();
+    }    
 }

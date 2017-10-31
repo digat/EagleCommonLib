@@ -20,9 +20,9 @@ public class TransactionMessage extends TimeBased{
     private final TransactionType transactionType;
     private final String clorderIdGenrated;
     private final Channel channel;
-     private final int id;
+     private final String id;
 
-    public TransactionMessage(Map<String, String> result, TransactionType transactionType, Channel channel, int id) {
+    public TransactionMessage(Map<String, String> result, TransactionType transactionType, Channel channel, String id) {
         super();
         this.result = result;
         this.transactionType = transactionType;
@@ -47,18 +47,23 @@ public class TransactionMessage extends TimeBased{
         return channel;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
+
+
     
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append("[TransactionMessage][TransactionType]")
-                .append("\t")
+        sb.append("TransactionMessage ")
+                .append("[id] ")
+                .append(id)
+                .append("[clorderIdGenrated] ")
+                .append(clorderIdGenrated)
+                .append("[transactionType] ")
                 .append(transactionType.name())
-                .append("\t")
-                .append("[xml]")
+                .append("[xml] ")
                 .append(result);
         return sb.toString();
     }

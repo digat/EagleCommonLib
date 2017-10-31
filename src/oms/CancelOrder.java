@@ -7,6 +7,7 @@ package oms;
 
 import com.Enums.Side;
 import java.io.Serializable;
+import java.lang.reflect.Field;
 
 /**
  *
@@ -73,5 +74,21 @@ public class CancelOrder extends Message implements Serializable{
     public void setMarketId(int marketId) {
         this.marketId = marketId;
     }
-    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("[CancelOrder] ");
+        for (Field field : this.getClass().getDeclaredFields()) {
+            //field.setAccessible(true); // if you want to modify private fields
+            try {
+                sb.append("[").append(field.getName()).append("] ");
+                sb.append(field.get(this));
+            } catch (IllegalArgumentException | IllegalAccessException ex) {
+                sb.append("null");
+            }
+
+        }
+        return sb.toString();
+    }    
 }

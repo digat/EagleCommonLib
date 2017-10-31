@@ -18,7 +18,7 @@ public class Data {
     private final Map<String, String> values;
 
     public Data() {
-        values = Maps.newTreeMap();
+        values = Maps.newLinkedHashMap();
     }
 
     public void addValue(String tag, String value) {

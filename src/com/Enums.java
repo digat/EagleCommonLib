@@ -17,7 +17,7 @@ public class Enums {
         RejectAppia(3),
         RejectFix(4),
         AppiaExpired(5),
-        ;
+        SentToMarket(6);
         int value;
         StateRep(int value){
             this.value = value;
@@ -61,9 +61,9 @@ public class Enums {
         public static String toEtpOrderType(KwOrderType v){
             switch(v){
                 case Market:
-                    return "15";
-                case Limit:
                     return "16";
+                case Limit:
+                    return "15";
                 case StopLoss:
                     return "17";
                 case StopLimit:
@@ -75,9 +75,9 @@ public class Enums {
 
         public static KwOrderType fromEtpOrderType(String v){
             switch(v){
-                case "15":
-                    return KwOrderType.Market;
                 case "16":
+                    return KwOrderType.Market;
+                case "15":
                     return KwOrderType.Limit;
                 case "17":
                     return KwOrderType.StopLoss;
