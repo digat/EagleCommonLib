@@ -10,6 +10,38 @@ package com;
  * @author Tareq
  */
 public class Enums {
+    public static enum TargetFor{
+        EdataTesting("ET"),
+        KICTest1("KT1"),
+        KICTest2("KT2"),
+        KICProduction("KP"),
+        KICProductionPublic("KPP"),
+        nil("");
+        String value;
+        TargetFor(String value){
+            this.value = value;
+        }
+        @Override
+        public String toString(){
+            return value;
+        }
+        public static TargetFor fromString(String val){
+            if(val.equals(EdataTesting.toString())){
+                return TargetFor.EdataTesting;
+            }else if(val.equals(KICTest1.toString())){
+                return TargetFor.KICTest1;                
+            }else if(val.equals(KICTest2.toString())){
+                return TargetFor.KICTest2;
+            }else if(val.equals(KICProduction.toString())){
+                return TargetFor.KICProduction;
+            }else if(val.equals(KICProductionPublic.toString())){
+                return TargetFor.KICProductionPublic;
+            }else{
+                return TargetFor.nil;
+            }
+        }
+    }
+
     public static enum StateRep{
         OrderCancelReject(0),
         InAppia(1),

@@ -34,6 +34,7 @@ public class ModifyOrder extends Message implements Serializable{
     private  Date expireDate;
     private  String clOrdID;
     private int marketId;
+    private String subAccount="";
     
     public int getMarketId() {
         return marketId;
@@ -158,6 +159,15 @@ public class ModifyOrder extends Message implements Serializable{
     public void setClOrdID(String clOrdID) {
         this.clOrdID = clOrdID;
     }
+
+    public String getSubAccount() {
+        return subAccount;
+    }
+
+    public void setSubAccount(String subAccount) {
+        this.subAccount = subAccount;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
