@@ -28,6 +28,7 @@ public class StateReport extends Message implements Serializable{
     private String transactTime; 
     private String fixRefMsg;
     private String text;
+
             
     public StateReport(String msgKey) {
         super(msgKey);

@@ -20,6 +20,7 @@ import java.util.logging.Logger;
  * @author Tareq
  */
 public class Functions {
+    private static final int NO_OF_CORS = Runtime.getRuntime().availableProcessors();;
 
     public static String generateId(){
         try {
@@ -61,4 +62,9 @@ public class Functions {
                 FIX_LOCAL_MKT_DATE_FORMAT);
         return dateFormat.format(input);
     }        
+    public static int calculateBoolSize(){
+        //connections = ((core_count * 2) + effective_spindle_count)
+        
+        return (NO_OF_CORS*2)+2;
+    }
 }

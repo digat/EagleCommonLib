@@ -16,17 +16,19 @@ public class FeedbackStateMessage extends Message{
     private final String clOrdID; 
     private final String origClOrdID;
     private final String marketId; 
+    private final char option;
     private String errorText;
 
-    public FeedbackStateMessage(String clOrdID, String origClOrdID, String marketId) {
+    public FeedbackStateMessage(String clOrdID, String origClOrdID, String marketId, char option) {
         super("");
         this.clOrdID = clOrdID;
         this.origClOrdID = origClOrdID;
         this.marketId = marketId;
+        this.option = option;
     }
 
-    public FeedbackStateMessage(String clOrdID, String origClOrdID, String marketId, String message) {
-        this(clOrdID, origClOrdID, marketId);
+    public FeedbackStateMessage(String clOrdID, String origClOrdID, String marketId, char option, String message) {
+        this(clOrdID, origClOrdID, marketId, option);
         this.errorText = message;
     }
 
@@ -48,6 +50,10 @@ public class FeedbackStateMessage extends Message{
 
     public void setErrorText(String errorText) {
         this.errorText = errorText;
+    }
+
+    public char getOption() {
+        return option;
     }
 
     @Override

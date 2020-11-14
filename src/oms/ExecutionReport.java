@@ -14,6 +14,7 @@ import com.Enums.Side;
 import com.Enums.TimeInForce;
 import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.util.List;
 
 
 /**
@@ -59,6 +60,8 @@ public class ExecutionReport extends Message implements Serializable {
     private ExecInst execInst;
     private String marketId;
     private String fixRefMsg;
+    private int noPartyIDs;
+    private List partyIDs;
 
     public ExecutionReport(String msgKey) {
         super(msgKey);
@@ -343,6 +346,23 @@ public class ExecutionReport extends Message implements Serializable {
     public void setLastQty(double lastQty) {
         this.lastQty = lastQty;
     }
+
+    public int getNoPartyIDs() {
+        return noPartyIDs;
+    }
+
+    public void setNoPartyIDs(int noPartyIDs) {
+        this.noPartyIDs = noPartyIDs;
+    }
+
+    public List getPartyIDs() {
+        return partyIDs;
+    }
+
+    public void setPartyIDs(List partyIDs) {
+        this.partyIDs = partyIDs;
+    }
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

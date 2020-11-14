@@ -33,6 +33,7 @@ public class CreateNewOrder extends Message implements Serializable{
     private String clOrdID;
     private int marketId;
     private String subAccount="";
+    //private String boardId="";
 
     public int getMarketId() {
         return marketId;
@@ -149,6 +150,15 @@ public class CreateNewOrder extends Message implements Serializable{
     public void setSubAccount(String subAccount) {
         this.subAccount = subAccount;
     }
+/*
+    public String getBoardId() {
+        return boardId;
+    }
+
+    public void setBoardId(String boardId) {
+        this.boardId = boardId;
+    }*/
+    
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
